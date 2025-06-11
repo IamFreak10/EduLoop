@@ -74,7 +74,7 @@ const Navbar = () => {
         <div className="hidden btn btn-ghost md:flex  items-center  ">
           <img
             className="relative -ml-[10px]  w-[100px] mb-[10px]"
-            src="/public/logo.png"
+            src="logo.png"
             alt="Logo"
           />
           <NavLink

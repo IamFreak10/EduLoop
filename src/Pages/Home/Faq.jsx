@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import faqLoiite from '../../assets/Lotties/Faq.json';
 import Lottie from 'lottie-react';
 import { Fade } from 'react-awesome-reveal';
+import useIsMobile from '../../Hooks/isMobile';
+import { i } from 'motion/react-client';
 const Faq = () => {
   const faqs = [
     {
@@ -30,8 +32,17 @@ const Faq = () => {
   const toggle = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+  const isMobile = useIsMobile();
+ const [duration, setDuration] = useState(0);
+ useEffect(() => {
+   if (!isMobile) {
+     setDuration(1000);
+   }
+   
+ }, [isMobile]);
+ console.log(duration);
   return (
-    <Fade triggerOnce direction='up'>
+    <Fade triggerOnce={isMobile} direction="up" duration={duration}>
       <div className=" dark:bg-[#213047] max-w-[90%] mx-auto flex flex-col md:flex-row-reverse items-center mt-8 rounded-2xl shadow-2xl">
         <div className="flex-1">
           <Lottie

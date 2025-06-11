@@ -10,7 +10,6 @@ const RootLayout = () => {
       <Navbar></Navbar>
         <DarkMode></DarkMode>
         <div className='max-w-[90%] mx-auto p-5 '><Outlet></Outlet></div>
-      
       <Footer></Footer>
     </>
   );
