@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@plugin "daisyui";
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+.font {
+    font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+/* Dark mode
+    any component bg=#213047
+
+
+*/
+/* Light mode
+    any component bg=bg-base-200
+    any text+background+hoverd background bg-[#ede7f6] 
+*/
