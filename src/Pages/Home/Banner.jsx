@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import team1 from '../../assets/team/team1.jpg';
 import team2 from '../../assets/team/team2.jpg';
-import { Space } from 'lucide-react';
 import { TypeAnimation } from 'react-type-animation';
 const Banner = () => {
   const [xMotion, setXMotion] = useState([]);

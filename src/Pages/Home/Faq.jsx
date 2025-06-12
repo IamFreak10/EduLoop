@@ -3,7 +3,8 @@ import faqLoiite from '../../assets/Lotties/Faq.json';
 import Lottie from 'lottie-react';
 import { Fade } from 'react-awesome-reveal';
 import useIsMobile from '../../Hooks/isMobile';
-import { i } from 'motion/react-client';
+import { div } from 'motion/react-client';
+
 const Faq = () => {
   const faqs = [
     {
@@ -33,55 +34,57 @@ const Faq = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
   const isMobile = useIsMobile();
- const [duration, setDuration] = useState(0);
- useEffect(() => {
-   if (!isMobile) {
-     setDuration(1000);
-   }
-   
- }, [isMobile]);
- console.log(duration);
+  const [duration, setDuration] = useState(0);
+  useEffect(() => {
+    if (!isMobile) {
+      setDuration(1000);
+    }
+  }, [isMobile]);
+  console.log(duration);
   return (
-    <Fade triggerOnce={isMobile} direction="up" duration={duration}>
-      <div className=" dark:bg-[#213047] max-w-[90%] mx-auto flex flex-col md:flex-row-reverse items-center mt-8 rounded-2xl shadow-2xl">
-        <div className="flex-1">
-          <Lottie
-            style={{ width: '300px', height: '300px' }}
-            animationData={faqLoiite}
-            loop={true}
-          ></Lottie>
-        </div>
-        <div className="flex-1">
-          <div className="my-16 px-4 md:px-8 lg:px-16">
-            <h2 className="text-3xl font-bold text-center mb-8">
-              Frequently Asked Questions
-            </h2>
-            <div className="max-w-3xl mx-auto space-y-4">
-              {faqs.map((faq, index) => (
-                <div
-                  key={index}
-                  className="dark:bg-[#213047]  p-4 rounded-lg shadow cursor-pointer select-none"
-                  onClick={() => toggle(index)}
-                  aria-expanded={openIndex === index}
-                >
-                  <h3 className="font-semibold text-lg flex justify-between items-center">
-                    {faq.question}
-                    <span className="ml-2 text-xl">
-                      {openIndex === index ? '−' : '+'}
-                    </span>
-                  </h3>
-                  {openIndex === index && (
-                    <p className="bg-[#9d91ad] mt-2 text-sm text-gray-600 rounded-2xl p-5">
-                      {faq.answer}
-                    </p>
-                  )}
-                </div>
-              ))}
+    <div className=''>
+      <h2 className="text-3xl mb-4 font-bold text-center">
+        Frequently Asked Questions
+      </h2>
+      {' '}
+      <Fade triggerOnce={isMobile} direction="up" duration={duration}>
+        <div className=" dark:bg-[#213047] max-w-[100%] mx-auto flex flex-col md:flex-row-reverse items-center  rounded-2xl shadow-2xl">
+          <div className="flex-1">
+            <Lottie
+              style={{ width: '300px', height: '300px' }}
+              animationData={faqLoiite}
+              loop={true}
+            ></Lottie>
+          </div>
+          <div className="flex-1">
+            <div className="my-16 px-4 md:px-8 lg:px-16">
+              <div className="max-w-3xl mx-auto space-y-4">
+                {faqs.map((faq, index) => (
+                  <div
+                    key={index}
+                    className="dark:bg-[#213047]  p-4 rounded-lg shadow cursor-pointer select-none"
+                    onClick={() => toggle(index)}
+                    aria-expanded={openIndex === index}
+                  >
+                    <h3 className="font-semibold text-lg flex justify-between items-center">
+                      {faq.question}
+                      <span className="ml-2 text-xl">
+                        {openIndex === index ? '−' : '+'}
+                      </span>
+                    </h3>
+                    {openIndex === index && (
+                      <p className="bg-[#9d91ad] mt-2 text-sm text-gray-600 rounded-2xl p-5">
+                        {faq.answer}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </Fade>
+      </Fade>
+    </div>
   );
 };
 
