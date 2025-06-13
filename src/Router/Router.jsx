@@ -8,6 +8,7 @@ import Assignments from '../Pages/Assignments/Assignments';
 import PendingAssignments from '../Pages/PendingAssigments/PendingAssignments';
 import CreateAssignment from '../Pages/CreateAssigment/CreateAssignment';
 import MyAttemptAssignments from '../Pages/MyAttemptAssignments/MyAttemptAssignments';
+import AssignmentDetails from '../Pages/Assignments/AssignmentDetails';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       {
         path: 'assigments',
         Component: Assignments,
+        loader: () => fetch('http://localhost:3000/assignments'),
       },
       {
         path: 'CreateAssignment',
@@ -46,6 +48,16 @@ const router = createBrowserRouter([
             <PendingAssignments></PendingAssignments>
           </PrivateRoute>
         ),
+      },
+      {
+        path: 'assignments/:id',
+        element: (
+          <PrivateRoute>
+           <AssignmentDetails></AssignmentDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) => fetch(`http://localhost:3000/assignments/${params.id}`),
+
       },
       
       
