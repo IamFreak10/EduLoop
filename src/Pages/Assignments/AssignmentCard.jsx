@@ -3,6 +3,7 @@ import React from 'react';
 import Swal from 'sweetalert2';
 import { FaEye, FaEdit, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router'; // FIX: use 'react-router-dom'
+import UseAuth from '../../Hooks/UseAuth';
 
 const AssignmentCard = ({ assignment }) => {
   const {
@@ -15,6 +16,7 @@ const AssignmentCard = ({ assignment }) => {
     CreatorInfo,
     _id,
   } = assignment;
+  const { user } = UseAuth();
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -27,20 +29,35 @@ const AssignmentCard = ({ assignment }) => {
       confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
-          .delete(`http://localhost:3000/assignments/${id}`)
-          .then(() => {
-            Swal.fire('Deleted!', 'The assignment has been deleted.', 'success');
-           
-          }).then(() => {
-            setTimeout(() => {
-              window.location.reload();
-            }, 1000);
-          })
-          .catch((error) => {
-            Swal.fire('Error!', 'Failed to delete the assignment.', 'error');
-            console.error(error);
+        if (user.email === CreatorInfo.email) {
+          axios
+            .delete(`http://localhost:3000/assignments/${id}`)
+            .then(() => {
+              Swal.fire(
+                'Deleted!',
+                'The assignment has been deleted.',
+                'success'
+              );
+            })
+            .then(() => {
+              setTimeout(() => {
+                window.location.reload();
+              }, 1000);
+            });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You are not allowed to delete this assignment!',
           });
+        }
+      }
+      else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelled',
+          'The assignment is safe :)',
+          'info'
+        );
       }
     });
   };
