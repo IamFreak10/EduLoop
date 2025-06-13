@@ -81,7 +81,9 @@ const Navbar = () => {
             to="/"
             className="absolute   normal-case  text-sm md:text-3xl  "
           >
-            <span className='text-[#21618c]'>Edu</span><span className='text-[#641e16]  font-extrabold'>L</span><span className='text-[#21618c]'>oop</span>
+            <span className="text-[#21618c]">Edu</span>
+            <span className="text-[#641e16]  font-extrabold">L</span>
+            <span className="text-[#21618c]">oop</span>
           </NavLink>
         </div>
       </div>
@@ -92,8 +94,8 @@ const Navbar = () => {
 
       <div className="navbar-end space-x-2">
         {user ? (
-          <div className="dropdown dropdown-end">
-            <button tabIndex={0} className="btn btn-ghost btn-circle avatar">
+          <div className="tooltip tooltip-left dropdown dropdown-end " data-tip={user.displayName}>
+            <button tabIndex={0} className="btn btn-ghost btn-circle avatar mr-2">
               <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
                 {/* If user has a photoURL, use that */}
                 {user.photoURL ? (
@@ -107,6 +109,12 @@ const Navbar = () => {
                 )}
               </div>
             </button>
+            <button
+              onClick={handleSignOut}
+              className="btn btn-sm btn-primary dark:btn-accent"
+            >
+              Sign Out
+            </button>
             <ul
               tabIndex={0}
               className="menu dropdown-content z-[1] mt-3 p-2 shadow bg-base-100 rounded-box w-52"
@@ -119,7 +127,6 @@ const Navbar = () => {
                   My Attempt Assignments
                 </NavLink>
               </li>
-             
             </ul>
           </div>
         ) : (
