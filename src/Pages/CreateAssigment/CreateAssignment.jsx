@@ -9,7 +9,7 @@ const CreateAssignment = () => {
   const { user } = UseAuth();
   const [startDate, setStartDate] = useState(new Date());
 
-  const handleSUbmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
@@ -19,91 +19,96 @@ const CreateAssignment = () => {
       email: user.email,
       photo: user.photoURL,
     };
+
     axios
       .post('http://localhost:3000/assignments', data)
       .then(() => {
-        // // form.reset();
-        // Swal.fire({
-        //   title: 'Successfully Added!',
-        //   icon: 'success',
-        //   draggable: true,
-        // });
+        // Success logic
       })
-      .catch(() => {});
+      .catch(() => {
+        // Error logic
+      });
   };
-  return (
-    <div className="card dark:bg-[#213047] mx-auto w-full max-w-sm shrink-0 shadow-2xl">
-      <div className="card-body">
-        <form onSubmit={handleSUbmit}>
-          <fieldset className="fieldset">
-            <h1 className="text-3xl font-bold text-center mb-4">
-              Create Assignment
-            </h1>
-            <label className="label">Title</label>
-            <input
-              name="title"
-              type="text"
-              className="input bg-[#ede7f6]"
-              placeholder="Assignment Title"
-              required
-            />
-            <label className="label">Description</label>
-            <textarea
-              name="description"
-              className="textarea bg-[#ede7f6]"
-              placeholder="Write a short description"
-              required
-            ></textarea>
-            <label className="label">Marks</label>
-            <input
-              name="marks"
-              type="number"
-              className="input bg-[#ede7f6]"
-              placeholder="Total Marks"
-              required
-            />
-            <label className="label">Thumbnail Image URL</label>
-            <input
-              name="thumbnail"
-              type="url"
-              className="input bg-[#ede7f6]"
-              placeholder="https://example.com/image.jpg"
-              required
-            />
-            <label className="label">Difficulty Level</label>
-            <select
-              name="difficulty"
-              className="select bg-[#ede7f6]"
-              value={difficulty}
-              onChange={(e) => setDifficulty(e.target.value)}
-              required
-            >
-              <option value="">Select Difficulty</option>
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
-            </select>
-            <label className="label text-sm font-medium text-gray-700 mb-1">
-              Due Date
-            </label>
-            <DatePicker
-              selected={startDate}
-              name="dueDate"
-              onChange={(date) => setStartDate(date)}
-              dateFormat="yyyy-MM-dd"
-              placeholderText="Select a date"
-              className="input input-bordered w-full max-w-xs"
-            />
 
-            <button
-              type="submit"
-              className="btn btn-primary dark:btn-accent mt-6 w-full"
-            >
-              Create Assignment
-            </button>
-          </fieldset>
-        </form>
+  return (
+    <div className="bg-white dark:bg-[#213047] rounded-lg shadow-md p-6 w-full max-w-2xl mx-auto mt-10">
+      <div className="flex items-center gap-4 mb-4">
+        <img
+          src={user?.photoURL}
+          alt={user?.displayName}
+          className="w-12 h-12 rounded-full border"
+        />
+        <div>
+          <p className="font-semibold dark:text-white">{user?.displayName}</p>
+          <p className="text-sm text-gray-400">{user?.email}</p>
+        </div>
       </div>
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input
+          name="title"
+          type="text"
+          className="input bg-[#ede7f6] w-full"
+          placeholder="What's the assignment title?"
+          required
+        />
+
+        <textarea
+          name="description"
+          className="textarea bg-[#ede7f6] w-full"
+          placeholder="Write a short description..."
+          required
+        ></textarea>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input
+            name="marks"
+            type="number"
+            className="input bg-[#ede7f6] w-full"
+            placeholder="Total Marks"
+            required
+          />
+
+          <input
+            name="thumbnail"
+            type="url"
+            className="input bg-[#ede7f6] w-full"
+            placeholder="Image URL"
+            required
+          />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <select
+            name="difficulty"
+            className="select bg-[#ede7f6] w-full"
+            value={difficulty}
+            onChange={(e) => setDifficulty(e.target.value)}
+            required
+          >
+            <option value="">Select Difficulty</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+
+          <DatePicker
+            selected={startDate}
+            name="dueDate"
+            onChange={(date) => setStartDate(date)}
+            dateFormat="yyyy-MM-dd"
+            placeholderText="Select a date"
+            className="input bg-[#ede7f6] w-full"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="btn btn-primary dark:btn-accent w-full"
+        >
+          Post Assignment
+        </button>
+      </form>
     </div>
   );
 };

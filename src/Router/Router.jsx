@@ -9,6 +9,8 @@ import PendingAssignments from '../Pages/PendingAssigments/PendingAssignments';
 import CreateAssignment from '../Pages/CreateAssigment/CreateAssignment';
 import MyAttemptAssignments from '../Pages/MyAttemptAssignments/MyAttemptAssignments';
 import AssignmentDetails from '../Pages/Assignments/AssignmentDetails';
+import UpdateAssignment from '../Pages/Assignments/UpdateAssignment';
+import SubmitAssignment from '../Pages/Assignments/SubmitAssignment';
 
 const router = createBrowserRouter([
   {
@@ -40,7 +42,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      
+
       {
         path: 'PendingAssignments',
         element: (
@@ -53,15 +55,33 @@ const router = createBrowserRouter([
         path: 'assignments/:id',
         element: (
           <PrivateRoute>
-           <AssignmentDetails></AssignmentDetails>
+            <AssignmentDetails></AssignmentDetails>
           </PrivateRoute>
         ),
-        loader: ({ params }) => fetch(`http://localhost:3000/assignments/${params.id}`),
-
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/assignments/${params.id}`),
       },
-      
-      
-     
+      {
+        path: 'assignments/:id/edit',
+        element: (
+          <PrivateRoute>
+            <UpdateAssignment></UpdateAssignment>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/assignments/${params.id}`),
+      },
+      {
+        path: 'assignmentsubmisson/:id',
+        element: (
+          <PrivateRoute>
+          <SubmitAssignment></SubmitAssignment>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/assignments/${params.id}`),
+      },
+
       {
         path: 'register',
         Component: Register,

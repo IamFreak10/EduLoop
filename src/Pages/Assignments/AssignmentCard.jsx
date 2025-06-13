@@ -51,13 +51,8 @@ const AssignmentCard = ({ assignment }) => {
             text: 'You are not allowed to delete this assignment!',
           });
         }
-      }
-      else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Cancelled',
-          'The assignment is safe :)',
-          'info'
-        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire('Cancelled', 'The assignment is safe :)', 'info');
       }
     });
   };
@@ -110,9 +105,11 @@ const AssignmentCard = ({ assignment }) => {
               <FaEye className="text-base" /> View
             </button>
           </Link>
-          <button className="btn btn-sm btn-warning text-white flex items-center gap-2">
-            <FaEdit className="text-base" /> Edit
-          </button>
+          <Link to={`/assignments/${_id}/edit`}>
+            <button className="btn btn-sm btn-warning text-white flex items-center gap-2">
+              <FaEdit className="text-base" /> Edit
+            </button>
+          </Link>
           <button
             onClick={() => handleDelete(_id)}
             className="btn btn-sm btn-error text-white flex items-center gap-2"

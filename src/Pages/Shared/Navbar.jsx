@@ -74,7 +74,7 @@ const Navbar = () => {
         <div className="hidden btn btn-ghost md:flex  items-center  ">
           <img
             className="relative -ml-[10px]  w-[100px] mb-[10px]"
-            src="logo.png"
+            src="/logo.png"
             alt="Logo"
           />
           <NavLink
@@ -119,9 +119,7 @@ const Navbar = () => {
                   My Attempt Assignments
                 </NavLink>
               </li>
-              <li>
-                <button onClick={handleSignOut}>Logout</button>
-              </li>
+             
             </ul>
           </div>
         ) : (
