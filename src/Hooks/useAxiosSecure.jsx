@@ -3,7 +3,7 @@ import UseAuth from './UseAuth';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 const axiosInstance = axios.create({
-  baseURL: 'https://career-code-server-silk.vercel.app',
+  baseURL: 'http://localhost:3000',
 });
 const useAxiosSecure = () => {
   const { user, signOutUser } = UseAuth();
