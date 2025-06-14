@@ -7,7 +7,7 @@ import { Fade } from 'react-awesome-reveal';
 const PendingAssignmentCard = ({ assignment }) => {
   // Example data
   console.log(assignment);
-  const { marks, submitedByName, submitedByPhoto, title, submitedByEmail } =
+  const {_id ,marks, submitedByName, submitedByPhoto, title, submitedByEmail } =
     assignment;
   return (
     <Fade triggerOnce={true} direction="up" duration={1000}>
@@ -28,7 +28,7 @@ const PendingAssignmentCard = ({ assignment }) => {
           </div>
         </div>
 
-        <div className="space-y-2 text-gray-700 dark:text-gray-300">
+        <div className="space-y-2 text-gray-700 dark:text-gray-300 min-h-[100px]">
           <p className="flex items-center gap-2">
             <MdAssignment className="text-xl" />
             Title:
@@ -41,7 +41,7 @@ const PendingAssignmentCard = ({ assignment }) => {
           </p>
         </div>
 
-        <Link to={`/give-mark/${assignment._id}`}>
+        <Link to={`/give-mark/${_id}`}>
           <button className="mt-5 w-full btn btn-primary dark:btn-accent text-white">
             Give Mark
           </button>

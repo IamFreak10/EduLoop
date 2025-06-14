@@ -11,6 +11,7 @@ import MyAttemptAssignments from '../Pages/MyAttemptAssignments/MyAttemptAssignm
 import AssignmentDetails from '../Pages/Assignments/AssignmentDetails';
 import UpdateAssignment from '../Pages/Assignments/UpdateAssignment';
 import SubmitAssignment from '../Pages/Assignments/SubmitAssignment';
+import GiveMark from '../Pages/Marking/GiveMark';
 
 const router = createBrowserRouter([
   {
@@ -80,6 +81,15 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:3000/assignments/${params.id}`),
+      },{
+        path:'give-mark/:id',
+        element: (
+          <PrivateRoute>
+         <GiveMark></GiveMark>
+          </PrivateRoute>
+        ),
+       
+
       },
 
       {

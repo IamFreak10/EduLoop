@@ -58,7 +58,7 @@ const AssignmentCard = ({ assignment }) => {
   };
 
   return (
-    <div className="card bg-white dark:bg-[#213047] shadow-2xl max-w-sm w-full mx-auto rounded-lg overflow-hidden">
+    <div className="flex flex-col h-full justify-between bg-white min-h-[450px] dark:bg-[#213047] shadow-2xl max-w-sm w-full mx-auto rounded-lg overflow-hidden">
       <figure className="px-4 pt-4">
         <img
           src={thumbnail}
@@ -68,11 +68,13 @@ const AssignmentCard = ({ assignment }) => {
       </figure>
 
       <div className="card-body">
-        <h2 className="card-title text-2xl font-bold text-primary dark:text-white">
+       <div className='min-h-[100px]'>
+         <h2 className="card-title text-2xl font-bold text-primary dark:text-white">
           {title}
         </h2>
+       </div>
 
-        <div className="mt-4 space-y-1 text-sm">
+        <div className="mt-4 space-y-1 text-sm ">
           <p>
             <span className="font-semibold text-green-500">Marks:</span> {marks}
           </p>
@@ -99,7 +101,8 @@ const AssignmentCard = ({ assignment }) => {
           </div>
         </div>
 
-        <div className="flex justify-between mt-6">
+       <div className=''>
+         <div className="flex justify-between ">
           <Link to={`/assignments/${_id}`}>
             <button className="btn btn-sm btn-info text-white flex items-center gap-2">
               <FaEye className="text-base" /> View
@@ -117,9 +120,10 @@ const AssignmentCard = ({ assignment }) => {
             <FaTrash className="text-base" /> Delete
           </button>
         </div>
+       </div>
       </div>
     </div>
   );
 };
-
+ 
 export default AssignmentCard;
