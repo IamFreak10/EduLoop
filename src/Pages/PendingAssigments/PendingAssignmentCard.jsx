@@ -11,7 +11,7 @@ const PendingAssignmentCard = ({ assignment }) => {
     assignment;
   return (
     <Fade triggerOnce={true} direction="up" duration={1000}>
-      <div className="bg-white dark:bg-[#213047] rounded-2xl shadow-md hover:shadow-lg transition duration-300 p-5 max-w-sm mx-auto">
+      <div className="bg-white dark:bg-[#213047] rounded-2xl shadow-2xl hover:shadow-lg hover:-translate-y-1 transition duration-300 p-5 max-w-sm mx-auto" >
         <div className="flex items-center gap-4 mb-4">
           <img
             src={submitedByPhoto}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Fade } from 'react-awesome-reveal';
 import { Link, useLoaderData } from 'react-router';
 
 const AssignmentDetails = () => {
@@ -16,7 +17,8 @@ const AssignmentDetails = () => {
   } = assignment;
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 p-6 bg-white dark:bg-[#1e293b] rounded-xl shadow-lg space-y-6">
+  <Fade triggerOnce={true} direction="up" duration={1000}>
+      <div className="max-w-3xl mx-auto mt-10 p-6 bg-white dark:bg-[#1e293b] rounded-xl shadow-lg space-y-6">
       <img
         src={thumbnail}
         alt={title}
@@ -70,6 +72,7 @@ const AssignmentDetails = () => {
         </Link>
       </div>
     </div>
+  </Fade>
   );
 };
 
