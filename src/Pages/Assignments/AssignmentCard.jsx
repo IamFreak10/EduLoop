@@ -2,10 +2,11 @@ import axios from 'axios';
 import React from 'react';
 import Swal from 'sweetalert2';
 import { FaEye, FaEdit, FaTrash } from 'react-icons/fa';
-import { Link } from 'react-router'; // FIX: use 'react-router-dom'
+import { Link, useNavigate } from 'react-router'; // FIX: use 'react-router-dom'
 import UseAuth from '../../Hooks/UseAuth';
 
 const AssignmentCard = ({ assignment }) => {
+  const navigate = useNavigate();
   const {
     title,
     description,
@@ -19,42 +20,53 @@ const AssignmentCard = ({ assignment }) => {
   const { user } = UseAuth();
 
   const handleDelete = (id) => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will not be able to recover this assignment!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Yes, delete it!',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (user.email === CreatorInfo.email) {
-          axios
-            .delete(`http://localhost:3000/assignments/${id}`)
-            .then(() => {
-              Swal.fire(
-                'Deleted!',
-                'The assignment has been deleted.',
-                'success'
-              );
-            })
-            .then(() => {
-              setTimeout(() => {
-                window.location.reload();
-              }, 1000);
+    if (!user) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'You are not evenet logged in,only logged in Users Can process such actions.Login To Conitue',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      }).then(() => {
+        navigate('/signIn');
+      });
+    } else {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You will not be able to recover this assignment!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          if (user.email === CreatorInfo.email) {
+            axios
+              .delete(`http://localhost:3000/assignments/${id}`)
+              .then(() => {
+                Swal.fire(
+                  'Deleted!',
+                  'The assignment has been deleted.',
+                  'success'
+                );
+              })
+              .then(() => {
+                setTimeout(() => {
+                  window.location.reload();
+                }, 1000);
+              });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'You are not allowed to delete this assignment!',
             });
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'You are not allowed to delete this assignment!',
-          });
+          }
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire('Cancelled', 'The assignment is safe :)', 'info');
         }
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Cancelled', 'The assignment is safe :)', 'info');
-      }
-    });
+      });
+    }
   };
 
   return (
@@ -68,11 +80,11 @@ const AssignmentCard = ({ assignment }) => {
       </figure>
 
       <div className="card-body">
-       <div className='min-h-[100px]'>
-         <h2 className="card-title text-2xl font-bold text-primary dark:text-white">
-          {title}
-        </h2>
-       </div>
+        <div className="min-h-[100px]">
+          <h2 className="card-title text-2xl font-bold text-primary dark:text-white">
+            {title}
+          </h2>
+        </div>
 
         <div className="mt-4 space-y-1 text-sm ">
           <p>
@@ -101,29 +113,29 @@ const AssignmentCard = ({ assignment }) => {
           </div>
         </div>
 
-       <div className=''>
-         <div className="flex justify-between ">
-          <Link to={`/assignments/${_id}`}>
-            <button className="btn btn-sm btn-info text-white flex items-center gap-2">
-              <FaEye className="text-base" /> View
+        <div className="">
+          <div className="flex justify-between ">
+            <Link to={`/assignments/${_id}`}>
+              <button className="btn btn-sm btn-info text-white flex items-center gap-2">
+                <FaEye className="text-base" /> View
+              </button>
+            </Link>
+            <Link to={`/assignments/${_id}/edit`}>
+              <button className="btn btn-sm btn-warning text-white flex items-center gap-2">
+                <FaEdit className="text-base" /> Edit
+              </button>
+            </Link>
+            <button
+              onClick={() => handleDelete(_id)}
+              className="btn btn-sm btn-error text-white flex items-center gap-2"
+            >
+              <FaTrash className="text-base" /> Delete
             </button>
-          </Link>
-          <Link to={`/assignments/${_id}/edit`}>
-            <button className="btn btn-sm btn-warning text-white flex items-center gap-2">
-              <FaEdit className="text-base" /> Edit
-            </button>
-          </Link>
-          <button
-            onClick={() => handleDelete(_id)}
-            className="btn btn-sm btn-error text-white flex items-center gap-2"
-          >
-            <FaTrash className="text-base" /> Delete
-          </button>
+          </div>
         </div>
-       </div>
       </div>
     </div>
   );
 };
- 
+
 export default AssignmentCard;
