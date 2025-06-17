@@ -122,7 +122,7 @@ const UpdateAssignment = () => {
             name="description"
             className="textarea bg-[#ede7f6] w-full"
             defaultValue={description}
-            required
+            
           ></textarea>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
