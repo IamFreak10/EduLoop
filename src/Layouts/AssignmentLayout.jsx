@@ -8,7 +8,7 @@ const AssignmentLayout = () => {
   const [assignments, setAssignments] = useState([]);
   useEffect(() => {
     axios
-      .get('http://localhost:3000/assignments')
+      .get('https://b11a11-server-side-iam-freak10.vercel.app/assignments')
       .then((response) => {
         setAssignments(response.data);
       })
@@ -18,9 +18,11 @@ const AssignmentLayout = () => {
   }, []);
   const handleDifficultyChange = (e) => {
     setDifficultyFilter(e.target.value);
-   
+
     axios
-      .get(`http://localhost:3000/assignments?difficulty=${e.target.value}`)
+      .get(
+        `https://b11a11-server-side-iam-freak10.vercel.app/assignments?difficulty=${e.target.value}`
+      )
       .then((response) => {
         setAssignments(response.data);
       })
@@ -31,22 +33,22 @@ const AssignmentLayout = () => {
 
   return (
     <>
-      <div className="mb-6 flex justify-center max-w-xl ">
+      <div className="mb-6 flex justify-center mx-auto max-w-xl ">
         <select
           value={difficultyFilter}
           onChange={handleDifficultyChange}
-          className="select select-bordered w-full max-w-xs bg-amber-400"
+          className="select select-bordered w-full max-w-xs bg-amber-400 dark:bg-accent"
         >
-          <option className="bg-amber-400 max-w-xs " value="">
+          <option className="bg-amber-400 max-w-xs dark:bg-accent " value="">
             All Difficulty Levels
           </option>
-          <option className="bg-amber-400 max-w-xs " value="easy">
+          <option className="bg-amber-400 max-w-xs dark:bg-accent " value="easy">
             Easy
           </option>
-          <option className="bg-amber-400 max-w-xs " value="medium">
+          <option className="bg-amber-400 max-w-xs  dark:bg-accent" value="medium">
             Medium
           </option>
-          <option className="bg-amber-400 max-w-xs " value="hard">
+          <option className="bg-amber-400 max-w-xs  dark:bg-accent" value="hard">
             Hard
           </option>
         </select>

@@ -11,7 +11,7 @@ const MyAttemptAssignmentCard = ({ assignment }) => {
   const { title, status, marks, Obtainedmarks, feedback } = assignment;
 
   return (
-    <div className="backdrop-blur-sm bg-white/70 dark:bg-[#1f2937]/60 border border-gray-200 dark:border-gray-700 rounded-3xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 p-6 max-w-sm mx-auto ">
+    <div className="backdrop-blur-sm bg-[#FADA7A]/20  dark:bg-[#1f2937]/60 border border-gray-200 dark:border-gray-700 rounded-3xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 p-6 max-w-sm mx-auto ">
       <div className="space-y-4 text-gray-900 dark:text-gray-100 font-inter">
 
         {/* Title */}

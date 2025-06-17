@@ -32,11 +32,38 @@ const UpdateAssignment = () => {
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
+
+    // Add creator info
     data.CreatorInfo = {
       name: user.displayName,
       email: user.email,
       photo: user.photoURL,
     };
+
+   
+    const marks = Number(form.marks.value);
+    const description = form.description.value;
+
+
+    if (isNaN(marks)) {
+      return Swal.fire({
+        title: 'Error!',
+        text: 'Marks must be a number.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+    }
+
+    if (description.length < 20) {
+      return Swal.fire({
+        title: 'Error!',
+        text: 'Description must be at least 20 characters.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+    }
+
+    
     Swal.fire({
       title: 'Do you want to save the changes?',
       showDenyButton: true,
@@ -45,14 +72,20 @@ const UpdateAssignment = () => {
       denyButtonText: `Don't save`,
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(data);
-       axiosSecure
-          .patch(`http://localhost:3000/assignments/${_id}?email=${user.email}`, data)
+        axiosSecure
+          .patch(
+            `https://b11a11-server-side-iam-freak10.vercel.app/assignments/${_id}?email=${user.email}`,
+            data
+          )
           .then(() => {
             Swal.fire('Updated!', '', 'success');
           })
           .then(() => {
             goback();
+          })
+          .catch((err) => {
+            console.error('Update failed:', err);
+            Swal.fire('Failed to update', '', 'error');
           });
       } else if (result.isDenied) {
         goback();
@@ -62,7 +95,7 @@ const UpdateAssignment = () => {
 
   if (user.email === CreatorInfo.email) {
     return (
-      <div className="bg-white dark:bg-[#213047] rounded-lg shadow-md p-6 w-full max-w-2xl mx-auto mt-10">
+      <div className="bg-[#FADA7A]/70  dark:bg-[#213047] rounded-lg shadow-md p-6 w-full max-w-2xl mx-auto mt-10">
         <div className="flex items-center gap-4 mb-4">
           <img
             src={user?.photoURL}
@@ -77,6 +110,7 @@ const UpdateAssignment = () => {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
+            required
             name="title"
             type="text"
             className="input bg-[#ede7f6] w-full"
@@ -84,6 +118,7 @@ const UpdateAssignment = () => {
           />
 
           <textarea
+            required
             name="description"
             className="textarea bg-[#ede7f6] w-full"
             defaultValue={description}
@@ -92,6 +127,7 @@ const UpdateAssignment = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input
+              required
               name="marks"
               type="number"
               className="input bg-[#ede7f6] w-full"
@@ -99,6 +135,7 @@ const UpdateAssignment = () => {
             />
 
             <input
+              required
               name="thumbnail"
               type="url"
               className="input bg-[#ede7f6] w-full"
@@ -121,6 +158,7 @@ const UpdateAssignment = () => {
             </select>
 
             <DatePicker
+              required
               selected={newstartDate}
               name="dueDate"
               onChange={(date) => setnewStartDate(date)}
@@ -131,7 +169,7 @@ const UpdateAssignment = () => {
 
           <button
             type="submit"
-            className="btn btn-primary dark:btn-accent w-full"
+            className="btn btn-warning dark:btn-accent w-full"
           >
             Update Assignment
           </button>

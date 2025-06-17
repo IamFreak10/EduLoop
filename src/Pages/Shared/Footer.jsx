@@ -19,13 +19,12 @@ const Footer = () => {
                 src="/logo.png"
                 alt="Logo"
               />
-              <NavLink
-                to="/"
-                className="absolute   normal-case  text-sm md:text-3xl  "
-              >
-                <span className="text-[#21618c]">Edu</span>
-                <span className="text-[#641e16]  font-extrabold">L</span>
-                <span className="text-[#21618c]">oop</span>
+              <NavLink to="/" className="absolute  normal-case">
+                <span className="text-[#41644A]  text-3xl font-semibold">
+                  Edu
+                </span>
+
+                <span className="text-[#8A2D3B] text-4xl font-bold">Loop</span>
               </NavLink>
             </div>
           </div>
@@ -39,7 +38,7 @@ const Footer = () => {
         </div>
 
         {/* Nav + Contact */}
-        <div className='dark:text-accent'>
+        <div className="dark:text-accent">
           <h3 className="text-lg font-semibold mb-2">Legal & Contact</h3>
           <ul className="space-y-2 text-sm">
             <li>
@@ -77,7 +76,9 @@ const Footer = () => {
 
         {/* Social Media */}
         <div>
-          <h3 className="text-lg font-semibold mb-2 dark:text-accent">Follow Us</h3>
+          <h3 className="text-lg font-semibold mb-2 dark:text-accent">
+            Follow Us
+          </h3>
           <div className="flex space-x-4">
             <a
               href="https://facebook.com"

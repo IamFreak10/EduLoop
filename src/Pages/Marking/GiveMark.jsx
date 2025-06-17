@@ -25,7 +25,7 @@ const GiveMark = () => {
     return () => clearTimeout(delay);
   }, []);
   if (loading) return <Reloader />;
-  console.log(submission);
+
   const { submitedByName, submitedByEmail, docLink, note} = submission;
   const handleSubmit = (e) => {
     e.preventDefault();

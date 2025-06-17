@@ -2,13 +2,20 @@ import React, { useContext } from 'react';
 import { NavLink } from 'react-router';
 import { Authcontext } from '../../Context/Authcontext';
 import { FaUserCircle } from 'react-icons/fa'; // 👈 FontAwesome user icon
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(Authcontext);
 
   const handleSignOut = () => {
     signOutUser().then(() => {
-      console.log('Signed out');
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Sign Out Successfully',
+        showConfirmButton: false,
+        timer: 1500,
+      });
     });
   };
 
@@ -51,7 +58,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="sticky top-0 z-10 navbar rounded-b-sm bg-[#F6F0F0]  dark:bg-[#1e293b] shadow-sm px-4">
+    <div className="sticky top-0 z-10 navbar rounded-b-sm bg-[#FADA7A]  dark:bg-[#1e293b] shadow-sm px-4">
       <div className="navbar-start">
         <div className="dropdown">
           <button tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -83,13 +90,10 @@ const Navbar = () => {
             src="/logo.png"
             alt="Logo"
           />
-          <NavLink
-            to="/"
-            className="absolute   normal-case  text-sm md:text-3xl  "
-          >
-            <span className="text-[#21618c]">Edu</span>
-            <span className="text-[#641e16]  font-extrabold">L</span>
-            <span className="text-[#21618c]">oop</span>
+          <NavLink to="/" className="absolute  normal-case">
+            <span className="text-[#41644A]  text-3xl font-semibold">Edu</span>
+
+            <span className="text-[#8A2D3B] text-4xl font-bold">Loop</span>
           </NavLink>
         </div>
       </div>
@@ -123,19 +127,31 @@ const Navbar = () => {
             </button>
             <button
               onClick={handleSignOut}
-              className="btn btn-sm btn-primary dark:btn-accent"
+              className="btn btn-warning  dark:btn-accent"
             >
               Sign Out
             </button>
             <ul
               tabIndex={0}
-              className="menu dropdown-content z-[1] mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu dropdown-content z-[1] mt-3 p-2 shadow bg-[#FFF0BD] dark:bg-gray-900  rounded-box w-52"
             >
               <li>
-                <NavLink to="/CreateAssignment">Create Assignment</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? 'text-amber-600 dark:text-accent' : ''
+                  }
+                  to="/CreateAssignment"
+                >
+                  Create Assignment
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/MyAttemptAssignments">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? 'text-amber-600 dark:text-accent' : ''
+                  }
+                  to="/MyAttemptAssignments"
+                >
                   My Attempt Assignments
                 </NavLink>
               </li>
@@ -143,11 +159,14 @@ const Navbar = () => {
           </div>
         ) : (
           <>
-            <NavLink className=" btn  px-4 py-2 btn-warning dark:btn-accent btn-outline" to="/register">
+            <NavLink
+              className=" btn  px-4 py-2  dark:btn-accent btn-outline"
+              to="/register"
+            >
               Register
             </NavLink>
             <NavLink
-              className="btn px-4 py-2 btn-warning  dark:btn-accent"
+              className="btn px-4 py-2 btn-warning dark:btn-accent "
               to="/signIn"
             >
               Sign In

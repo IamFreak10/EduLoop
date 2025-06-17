@@ -6,6 +6,7 @@ import SocialLogin from '../Shared/SocialLogin';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { Fade } from 'react-awesome-reveal';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -21,12 +22,18 @@ const SignIn = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    
     // SignIn Register
 
     signInUser(email, password)
       .then(() => {
-        alert('SignIn Successfully');
+       Swal.fire({
+         position: 'center',
+         icon: 'success',
+         title: 'SignIn Successfully',
+         showConfirmButton: false,
+         timer: 1500,
+       })
         navigate(from);
         // setLoading(false);
       })
@@ -45,25 +52,29 @@ const SignIn = () => {
               loop={true}
             ></Lottie>
           </div>
-          <div className="card bg-[#8DBCC770] dark:bg-[#213047] w-full max-w-sm   shrink-0 shadow-2xl">
+          <div className="card   dark:bg-[#213047] w-full max-w-sm   shrink-0 shadow-2xl">
             <div className="card-body">
               <form onSubmit={handleSignIn}>
                 <fieldset className="fieldset">
-                  <h1 className="text-5xl font-bold text-center">
-                    SignIn now!
+                  <h1 className="text-5xl text-amber-600  dark:text-accent font-bold text-center">
+                    Login Now!!
                   </h1>
-                  <label className="label">Email</label>
+                  <label className="text-amber-900 dark:text-accent  label">
+                    Email
+                  </label>
                   <input
                     name="email"
                     type="email"
-                    className="input bg-[#ede7f6]"
+                    className="input bg-amber-100 dark:bg-gray-200"
                     placeholder="Email"
                   />
                   <div className="relative">
-                    <label className="label text-sm font-bold">Password</label>
+                    <label className="label text-amber-900 dark:text-accent text-sm font-bold">
+                      Password
+                    </label>
                     <input
                       type={showPassword ? 'text' : 'password'}
-                      className="input bg-[#ede7f6]"
+                      className="input bg-amber-100 dark:bg-gray-200"
                       placeholder="Password"
                       name="password"
                     />
@@ -89,7 +100,7 @@ const SignIn = () => {
                       Register Now!!
                     </Link>
                   </div>
-                  <button className="btn max-w-[98%] btn-primary  dark:btn-accent mt-4">
+                  <button className="btn max-w-[98%] btn-warning  dark:btn-accent mt-4">
                     Log In
                   </button>
                 </fieldset>

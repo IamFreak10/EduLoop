@@ -44,7 +44,9 @@ const AssignmentCard = ({ assignment }) => {
         if (result.isConfirmed) {
           if (user.email === CreatorInfo.email) {
             axiosSecure
-              .delete(`http://localhost:3000/assignments/${id}?email=${user.email}`)
+              .delete(
+                `https://b11a11-server-side-iam-freak10.vercel.app/assignments/${id}?email=${user.email}`
+              )
               .then(() => {
                 Swal.fire(
                   'Deleted!',

@@ -60,7 +60,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/assignments/${params.id}`),
+          fetch(
+            `https://b11a11-server-side-iam-freak10.vercel.app/assignments/${params.id}`
+          ),
       },
       {
         path: 'assignments/:id/edit',
@@ -70,7 +72,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/assignments/${params.id}`),
+          fetch(
+            `https://b11a11-server-side-iam-freak10.vercel.app/assignments/${params.id}`
+          ),
       },
       {
         path: 'assignmentsubmisson/:id',
@@ -80,7 +84,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/assignments/${params.id}`),
+          fetch(
+            `https://b11a11-server-side-iam-freak10.vercel.app/assignments/${params.id}`
+          ),
       },
       {
         path: 'give-mark/:id',

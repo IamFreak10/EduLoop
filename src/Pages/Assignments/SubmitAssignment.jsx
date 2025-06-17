@@ -1,4 +1,3 @@
-
 import UseAuth from '../../Hooks/UseAuth';
 import { useLoaderData, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
@@ -34,7 +33,10 @@ const SubmitAssignment = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure
-          .post('http://localhost:3000/submissions', submisson)
+          .post(
+            'https://b11a11-server-side-iam-freak10.vercel.app/submissions',
+            submisson
+          )
           .then(() => {
             Swal.fire('Submitted!', '', 'success');
             form.reset();
@@ -52,7 +54,7 @@ const SubmitAssignment = () => {
 
   return (
     <Fade triggerOnce={true} direction="up" duration={1000}>
-      <div className="bg-white dark:bg-[#213047] rounded-lg shadow-md p-6 w-full max-w-2xl mx-auto mt-10">
+      <div className="bg-[#FFF0BD]  dark:bg-[#213047] rounded-lg shadow-md p-6 w-full max-w-2xl mx-auto mt-10">
         <div className="flex items-center gap-4 mb-4">
           <img
             src={user.photoURL}
@@ -84,7 +86,7 @@ const SubmitAssignment = () => {
 
           <button
             type="submit"
-            className="btn btn-primary dark:btn-accent w-full"
+            className="btn btn-warning dark:btn-accent w-full"
           >
             Submit Assignment
           </button>

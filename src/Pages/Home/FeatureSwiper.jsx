@@ -47,7 +47,7 @@ const FeatureSwiper = () => {
   return (
     <div className="py-10">
       <Fade triggerOnce={isMobile} direction="up" duration={duration}>
-        <div className="bg-[#F6F0F0] dark:bg-[#213047] max-w-[100%] mx-auto mt-10 shadow-2xl rounded-2xl flex items-center  justify-center">
+        <div className="bg-[#FADA7A40] dark:bg-[#213047]/80 max-w-[100%] mx-auto mt-10 shadow-2xl rounded-2xl flex items-center  justify-center">
           <Swiper
             modules={[Autoplay, Pagination, Navigation]}
             spaceBetween={30}

@@ -4,24 +4,21 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://b11a11-server-side-iam-freak10.vercel.app',
 });
 
 const useAxiosSecure = () => {
   const { user, signOutUser } = UseAuth();
 
   // Request Interceptor
-  axiosInstance.interceptors.request.use(
-    async (config) => {
-      if (user) {
-        // ✅ Get fresh ID token
-        const token = await user.getIdToken();
-        config.headers.authorization = `Bearer ${token}`;
-      }
-      return config;
-    },
-   
-  );
+  axiosInstance.interceptors.request.use(async (config) => {
+    if (user) {
+      
+      const token = await user.getIdToken();
+      config.headers.authorization = `Bearer ${token}`;
+    }
+    return config;
+  });
 
   // Response Interceptor
   axiosInstance.interceptors.response.use(

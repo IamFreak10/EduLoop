@@ -6,12 +6,12 @@ import { Fade } from 'react-awesome-reveal';
 
 const PendingAssignmentCard = ({ assignment }) => {
   // Example data
-  console.log(assignment);
+
   const {_id ,marks, submitedByName, submitedByPhoto, title, submitedByEmail } =
     assignment;
   return (
     <Fade triggerOnce={true} direction="up" duration={1000}>
-      <div className="bg-white dark:bg-[#213047] rounded-2xl shadow-2xl hover:shadow-lg hover:-translate-y-1 transition duration-300 p-5 max-w-sm mx-auto" >
+      <div className="bg-[#FFF0BD] dark:bg-[#213047] rounded-2xl shadow-2xl hover:shadow-lg hover:-translate-y-1 transition duration-300 p-5 max-w-sm mx-auto" >
         <div className="flex items-center gap-4 mb-4">
           <img
             src={submitedByPhoto}
@@ -42,7 +42,7 @@ const PendingAssignmentCard = ({ assignment }) => {
         </div>
 
         <Link to={`/give-mark/${_id}`}>
-          <button className="mt-5 w-full btn btn-primary dark:btn-accent text-white">
+          <button className="mt-5 w-full btn btn-warning dark:btn-accent ">
             Give Mark
           </button>
         </Link>

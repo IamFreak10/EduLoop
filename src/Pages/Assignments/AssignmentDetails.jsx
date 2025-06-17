@@ -4,7 +4,7 @@ import { Link, useLoaderData } from 'react-router';
 
 const AssignmentDetails = () => {
   const assignment = useLoaderData(); // fetched via route loader
-  console.log(assignment);
+  
   const {
     title,
     description,
@@ -18,7 +18,7 @@ const AssignmentDetails = () => {
 
   return (
   <Fade triggerOnce={true} direction="up" duration={1000}>
-      <div className="max-w-3xl mx-auto mt-10 p-6 bg-white dark:bg-[#1e293b] rounded-xl shadow-lg space-y-6">
+      <div className="max-w-3xl mx-auto mt-10 p-6 bg-[#FFF0BD]  dark:bg-[#1e293b] rounded-xl shadow-lg space-y-6">
       <img
         src={thumbnail}
         alt={title}
@@ -66,7 +66,7 @@ const AssignmentDetails = () => {
       <div className="pt-4">
         <Link to={`/assignmentsubmisson/${_id}`}>
           {' '}
-          <button className="btn btn-primary dark:btn-accent w-full">
+          <button className="btn btn-warning dark:btn-accent w-full">
             Take Assignment
           </button>
         </Link>

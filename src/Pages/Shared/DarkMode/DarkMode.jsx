@@ -31,7 +31,7 @@ function DarkMode() {
 
   return (
     <ThemeProvider value={{ darkMode, toggleDarkMode }}>
-      <div className="opacity-20 hover:opacity-100 z-30  fixed top-20 right-2">
+      <div className=" opacity-80 hover:opacity-110   z-30  fixed top-39 right-2 ">
         <DarkModeBtn />
       </div>
     </ThemeProvider>

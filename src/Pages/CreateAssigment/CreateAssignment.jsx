@@ -12,18 +12,43 @@ const CreateAssignment = () => {
   const [difficulty, setDifficulty] = useState('');
   const { user } = UseAuth();
   const [startDate, setStartDate] = useState(new Date());
-  const axiosSecure=useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
+
+   
     data.CreatorInfo = {
       name: user.displayName,
       email: user.email,
       photo: user.photoURL,
     };
 
+ 
+    const marks = Number(form.marks.value);
+    const description = form.description.value;
+
+    if (isNaN(marks)) {
+      return Swal.fire({
+        title: 'Error!',
+        text: 'Marks must be a valid number.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+    }
+
+    if (description.length < 20) {
+      return Swal.fire({
+        title: 'Error!',
+        text: 'Description must be at least 20 characters long.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+    }
+
+   
     Swal.fire({
       title: 'Do you want to create an assignment?',
       showDenyButton: true,
@@ -31,18 +56,22 @@ const CreateAssignment = () => {
       confirmButtonText: 'Save',
       denyButtonText: `Don't save`,
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        
-          axiosSecure.post('http://localhost:3000/assignments', data)
+        axiosSecure
+          .post(
+            'https://b11a11-server-side-iam-freak10.vercel.app/assignments',
+            data
+          )
           .then(() => {
             Swal.fire('Saved!', '', 'success');
           })
           .then(() => {
             form.reset();
+            navigate('/assigments'); 
           })
-          .then(() => {
-            navigate('/assigments');
+          .catch((err) => {
+            console.error('Assignment creation failed:', err);
+            Swal.fire('Failed to create assignment', '', 'error');
           });
       } else if (result.isDenied) {
         Swal.fire('Changes are not saved', '', 'info');
@@ -51,7 +80,7 @@ const CreateAssignment = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-[#213047] rounded-lg shadow-md p-6 w-full max-w-2xl mx-auto mt-10">
+    <div className="bg-[#FFF0BD]  dark:bg-[#213047] rounded-lg shadow-md p-6 w-full max-w-2xl mx-auto mt-10">
       <div className="flex items-center gap-4 mb-4">
         <img
           src={user?.photoURL}
@@ -124,9 +153,9 @@ const CreateAssignment = () => {
 
         <button
           type="submit"
-          className="btn btn-primary dark:btn-accent w-full"
+          className="btn btn-warning dark:btn-accent w-full"
         >
-          Post Assignment
+          Create Assignment
         </button>
       </form>
     </div>
