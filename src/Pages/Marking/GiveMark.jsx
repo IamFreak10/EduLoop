@@ -68,7 +68,7 @@ const GiveMark = () => {
    return (
     <div className="flex flex-col h-full justify-between bg-white dark:bg-[#213047] shadow-2xl max-w-sm w-full mx-auto rounded-lg overflow-hidden p-5 space-y-4">
       <h2 className="text-xl font-bold text-primary dark:text-white text-center">
-        Review Assignment
+        Mark Assignment
       </h2>
 
       {/* Examinee Info */}
@@ -93,6 +93,7 @@ const GiveMark = () => {
       <form onSubmit={handleSubmit}>
         {/* Note */}
         <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded text-sm text-gray-700 dark:text-gray-200">
+          <span className="font-semibold text-amber-500 dark:text-accent">Note of Examinee:</span>
           {note}
         </div>
 

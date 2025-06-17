@@ -13,6 +13,7 @@ import UpdateAssignment from '../Pages/Assignments/UpdateAssignment';
 import SubmitAssignment from '../Pages/Assignments/SubmitAssignment';
 import GiveMark from '../Pages/Marking/GiveMark';
 import AssignmentLayout from '../Layouts/AssignmentLayout';
+import Error from '../Pages/Shared/Error';
 
 const router = createBrowserRouter([
   {
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
             <GiveMark></GiveMark>
           </PrivateRoute>
         ),
+      },
+      {
+        path:'*',
+        Component:Error
       },
 
       {
