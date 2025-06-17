@@ -5,13 +5,14 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const CreateAssignment = () => {
   const navigate = useNavigate();
   const [difficulty, setDifficulty] = useState('');
   const { user } = UseAuth();
   const [startDate, setStartDate] = useState(new Date());
-
+  const axiosSecure=useAxiosSecure();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -23,29 +24,30 @@ const CreateAssignment = () => {
       photo: user.photoURL,
     };
 
-   Swal.fire({
-    title: 'Do you want to create an assignment?',
-    showDenyButton: true,
-    showCancelButton: true,
-    confirmButtonText: 'Save',
-    denyButtonText: `Don't save`,
-  }).then((result) => {
-    /* Read more about isConfirmed, isDenied below */
-    if (result.isConfirmed) {
-       axios
-      .post('http://localhost:3000/assignments', data)
-      .then(() => {
-        Swal.fire('Saved!', '', 'success');
-      })
-        .then(() => {
-          form.reset();
-        }).then(() => {
-          navigate('/assigments');
-        })
-    } else if (result.isDenied) {
-      Swal.fire('Changes are not saved', '', 'info');
-    }
-  })
+    Swal.fire({
+      title: 'Do you want to create an assignment?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        
+          axiosSecure.post('http://localhost:3000/assignments', data)
+          .then(() => {
+            Swal.fire('Saved!', '', 'success');
+          })
+          .then(() => {
+            form.reset();
+          })
+          .then(() => {
+            navigate('/assigments');
+          });
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info');
+      }
+    });
   };
 
   return (

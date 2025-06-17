@@ -29,7 +29,7 @@ const AssignmentDetails = () => {
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
           {title}
         </h1>
-        <p className="mt-2 text-gray-700 dark:text-gray-300">{description}</p>
+        <p className="mt-2 text-base leading-relaxed text-gray-700 dark:text-gray-300">{description}</p>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-sm font-medium text-gray-600 dark:text-gray-400">

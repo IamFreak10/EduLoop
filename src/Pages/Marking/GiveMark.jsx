@@ -44,6 +44,8 @@ const GiveMark = () => {
       if (result.isConfirmed) {
         updateSubmissionPromise(id, data).then(() => {
           Swal.fire('Saved!', '', 'success');
+        }).then(() => {
+          navigate('/PendingAssignments');
         })
         
       } else if (result.isDenied) {

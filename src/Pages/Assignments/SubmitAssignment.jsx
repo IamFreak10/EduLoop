@@ -1,15 +1,16 @@
-import { useState } from 'react';
+
 import UseAuth from '../../Hooks/UseAuth';
 import { useLoaderData, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
-import axios from 'axios';
+
 import { Fade } from 'react-awesome-reveal';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const SubmitAssignment = () => {
   const navigate = useNavigate();
   const { user } = UseAuth();
   const { _id } = useLoaderData();
-
+  const axiosSecure = useAxiosSecure();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -32,7 +33,7 @@ const SubmitAssignment = () => {
       denyButtonText: `Don't submit`,
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
+        axiosSecure
           .post('http://localhost:3000/submissions', submisson)
           .then(() => {
             Swal.fire('Submitted!', '', 'success');

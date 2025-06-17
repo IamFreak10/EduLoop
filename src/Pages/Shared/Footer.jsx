@@ -1,122 +1,127 @@
-import React from 'react';
+import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { FaGlobe } from 'react-icons/fa';
+import { GiCircularSawblade } from 'react-icons/gi';
+import { NavLink } from 'react-router';
+import logo from '../../../public/logo.png';
 
 const Footer = () => {
+  const activeStyle = 'font-semibold underline text-secondary';
+
   return (
-    <footer className="bg-gray-900 text-gray-300 p-8 sm:p-12">
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-start gap-10">
-        {/* Brand Section */}
-        <div className="flex flex-col items-start space-y-3 sm:w-1/3">
-          {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <svg
-              width="48"
-              height="48"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#4F46E5"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-indigo-600"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <path d="M12 6v6l4 2" />
-            </svg>
-            <span className="text-2xl font-bold text-indigo-500">
-              QuestGroup
-            </span>
+    <footer className=" bg-[#FADA7A] dark:bg-[#1e293b] py-8 p-10 rounded-t-2xl shadow-inner bg-image text-[#22461b]">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Company Info */}
+        <div>
+          <div className="flex text-xl font-bold mb-2 items-center">
+            <div className=" btn btn-ghost md:flex  items-center  ">
+              <img
+                className="relative -ml-[10px]  w-[100px] mb-[10px]"
+                src="/logo.png"
+                alt="Logo"
+              />
+              <NavLink
+                to="/"
+                className="absolute   normal-case  text-sm md:text-3xl  "
+              >
+                <span className="text-[#21618c]">Edu</span>
+                <span className="text-[#641e16]  font-extrabold">L</span>
+                <span className="text-[#21618c]">oop</span>
+              </NavLink>
+            </div>
           </div>
-          <p className="text-gray-400">
-            Empowering your journey with innovative solutions since 2025.
+          <p className="text-sm text-[#22461b] dark:text-accent leading-relaxed">
+            EduLoop is a modern educational platform that supports group-based
+            learning and assignment management. It enables students to
+            collaborate, share feedback, and track their academic progress in
+            one place. By combining communication and learning tools, EduLoop
+            makes online education more interactive and engaging.
           </p>
         </div>
 
-        {/* Navigation Links */}
-        <nav className="sm:w-1/3">
-          <h3 className="text-lg font-semibold mb-4 text-indigo-400">
-            Explore
-          </h3>
-          <ul className="space-y-2 text-gray-300">
+        {/* Nav + Contact */}
+        <div className='dark:text-accent'>
+          <h3 className="text-lg font-semibold mb-2">Legal & Contact</h3>
+          <ul className="space-y-2 text-sm">
             <li>
-              <a href="#about" className="hover:text-indigo-500 transition">
-                About Us
-              </a>
+              <NavLink
+                to="/terms-and-conditions"
+                className={({ isActive }) =>
+                  `link link-hover ${isActive ? activeStyle : ''}`
+                }
+              >
+                Terms & Conditions
+              </NavLink>
             </li>
-            <li>
-              <a href="#services" className="hover:text-indigo-500 transition">
-                Services
-              </a>
+            <li className="flex items-center space-x-2">
+              <FaGlobe className="w-4 h-4 text-green-700" />
+              <span>Phone: +1 (555) 123 4567</span>
             </li>
-            <li>
-              <a href="#contact" className="hover:text-indigo-500 transition">
-                Contact
-              </a>
+            <li className="flex items-center space-x-2">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/124/124012.png"
+                alt="WhatsApp"
+                className="w-4 h-4"
+              />
+              <span>WhatsApp: +1 (555) 901 2345</span>
             </li>
-            <li>
-              <a href="#careers" className="hover:text-indigo-500 transition">
-                Careers
-              </a>
+            <li className="flex items-center space-x-2">
+              <span className="font-semibold">Help Desk:</span>
+              <span>+1 (800) 111 2222</span>
+            </li>
+            <li className="flex items-center space-x-2">
+              <span className="font-semibold">Support Line:</span>
+              <span>+1 (800) 333 4444</span>
             </li>
           </ul>
-        </nav>
+        </div>
 
-        {/* Social Icons */}
-        <div className="sm:w-1/3">
-          <h3 className="text-lg font-semibold mb-4 text-indigo-400">
-            Connect with us
-          </h3>
-          <div className="flex space-x-6">
+        {/* Social Media */}
+        <div>
+          <h3 className="text-lg font-semibold mb-2 dark:text-accent">Follow Us</h3>
+          <div className="flex space-x-4">
             <a
-              href="https://twitter.com/questgroup"
+              href="https://facebook.com"
               target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Twitter"
-              className="hover:text-indigo-500 transition"
+              rel="noreferrer"
+              className="btn btn-sm btn-circle bg-blue-600 hover:bg-blue-700 text-white"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6 fill-current"
-                viewBox="0 0 24 24"
-              >
-                <path d="M24 4.557a9.834 9.834 0 01-2.828.775 4.932 4.932 0 002.165-2.724 9.864 9.864 0 01-3.127 1.195 4.918 4.918 0 00-8.38 4.482A13.944 13.944 0 011.671 3.149a4.918 4.918 0 001.523 6.574 4.903 4.903 0 01-2.228-.616v.062a4.919 4.919 0 003.946 4.827 4.902 4.902 0 01-2.224.084 4.922 4.922 0 004.596 3.417 9.867 9.867 0 01-6.102 2.104c-.395 0-.786-.023-1.17-.068a13.945 13.945 0 007.557 2.212c9.054 0 14.003-7.503 14.003-14.002 0-.213-.004-.425-.014-.636A10.012 10.012 0 0024 4.557z" />
-              </svg>
+              <Facebook size={18} />
             </a>
             <a
-              href="https://youtube.com/questgroup"
+              href="https://instagram.com"
               target="_blank"
-              rel="noopener noreferrer"
-              aria-label="YouTube"
-              className="hover:text-indigo-500 transition"
+              rel="noreferrer"
+              className="btn btn-sm btn-circle bg-pink-500 hover:bg-pink-600 text-white"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6 fill-current"
-                viewBox="0 0 24 24"
-              >
-                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
-              </svg>
+              <Instagram size={18} />
             </a>
             <a
-              href="https://facebook.com/questgroup"
+              href="https://twitter.com"
               target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="hover:text-indigo-500 transition"
+              rel="noreferrer"
+              className="btn btn-sm btn-circle bg-sky-400 hover:bg-sky-500 text-white"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6 fill-current"
-                viewBox="0 0 24 24"
-              >
-                <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
-              </svg>
+              <Twitter size={18} />
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-sm btn-circle bg-blue-800 hover:bg-blue-900 text-white"
+            >
+              <Linkedin size={18} />
             </a>
           </div>
         </div>
       </div>
 
-      <div className="text-center text-gray-500 mt-10 text-sm">
-        &copy; {new Date().getFullYear()} QuestGroup. All rights reserved.
+      {/* Footer Bottom */}
+      <div className="mt-10 text-center text-sm dark:text-accent ">
+        <p>© {new Date().getFullYear()} EduLoop. All rights reserved.</p>
+        <div className="flex justify-center items-center gap-1 mt-1">
+          <FaGlobe className="text-xs" />
+          <span>http://eduloop.surge.sh</span>
+        </div>
       </div>
     </footer>
   );

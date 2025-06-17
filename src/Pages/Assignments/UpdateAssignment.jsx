@@ -5,11 +5,11 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Link, useLoaderData, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
-
-
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const UpdateAssignment = () => {
-    const navigate=useNavigate();
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
   const [updifficulty, setupDifficulty] = useState('');
   const { user } = UseAuth();
   const [newstartDate, setnewStartDate] = useState(new Date());
@@ -24,9 +24,9 @@ const UpdateAssignment = () => {
     CreatorInfo,
     _id,
   } = assignment;
-const goback=()=>{
+  const goback = () => {
     navigate(-1);
-}
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -37,7 +37,7 @@ const goback=()=>{
       email: user.email,
       photo: user.photoURL,
     };
-   Swal.fire({
+    Swal.fire({
       title: 'Do you want to save the changes?',
       showDenyButton: true,
       showCancelButton: true,
@@ -46,8 +46,8 @@ const goback=()=>{
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(data);
-        axios
-          .patch(`http://localhost:3000/assignments/${_id}`, data)
+       axiosSecure
+          .patch(`http://localhost:3000/assignments/${_id}?email=${user.email}`, data)
           .then(() => {
             Swal.fire('Updated!', '', 'success');
           })
@@ -58,8 +58,6 @@ const goback=()=>{
         goback();
       }
     });
-
-  
   };
 
   if (user.email === CreatorInfo.email) {
@@ -140,17 +138,22 @@ const goback=()=>{
         </form>
       </div>
     );
-  }
-  else{
+  } else {
     return (
       <div className="max-w-3xl mx-auto mt-10 p-6 bg-white dark:bg-[#1e293b] rounded-xl shadow-lg space-y-6">
-        <h1 className="text-3xl font-bold text-red-500">You are not allowed to update this assignment!!
-            Only the creator can update this assignment</h1>
-            <button onClick={goback} className="btn btn-primary dark:btn-accent w-full">Go Back</button>
+        <h1 className="text-3xl font-bold text-red-500">
+          You are not allowed to update this assignment!! Only the creator can
+          update this assignment
+        </h1>
+        <button
+          onClick={goback}
+          className="btn btn-primary dark:btn-accent w-full"
+        >
+          Go Back
+        </button>
       </div>
-    )
+    );
   }
-
 };
 
 export default UpdateAssignment;

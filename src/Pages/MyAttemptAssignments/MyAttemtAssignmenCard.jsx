@@ -15,11 +15,14 @@ const MyAttemptAssignmentCard = ({ assignment }) => {
       <div className="space-y-4 text-gray-900 dark:text-gray-100 font-inter">
 
         {/* Title */}
-        <div className="flex items-center gap-3 text-lg">
-          <MdAssignment className="text-2xl text-blue-500" />
-          <span className="font-medium text-gray-600 dark:text-gray-300">Title:</span>
-          <span className="font-semibold truncate text-blue-800 dark:text-blue-200">{title}</span>
+           <div className="card-body">
+        <div className="min-h-[100px]">
+          <h2 className="card-title text-2xl font-bold text-primary dark:text-white">
+            {title}
+          </h2>
         </div>
+      </div>
+      
 
         {/* Status */}
         <div className="flex items-center gap-3 text-lg">

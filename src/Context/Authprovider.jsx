@@ -10,12 +10,17 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { auth } from '../Firebase/Firebase.init';
-import axios from 'axios';
+
 
 const googleProvider = new GoogleAuthProvider();
 const Authprovider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const[dmode,setdMode]=useState(false);
+
   const [loading, setLoading] = useState(true);
+  const ModeInterceptor=()=>{
+    setdMode((prev)=>!prev);
+  }
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -63,6 +68,9 @@ const Authprovider = ({ children }) => {
     signOutUser,
     signInWithGoogle,
     updateUserProfile,
+    dmode,
+    ModeInterceptor
+    
   };
 
   return <Authcontext value={authInfo}>{children}</Authcontext>;

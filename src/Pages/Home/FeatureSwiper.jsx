@@ -10,7 +10,6 @@ import { Fade } from 'react-awesome-reveal';
 import { useEffect, useState } from 'react';
 import useIsMobile from '../../Hooks/isMobile';
 
-
 const FeatureSwiper = () => {
   const features = [
     {
@@ -38,7 +37,7 @@ const FeatureSwiper = () => {
       image: 'https://i.postimg.cc/43cSdT7q/4.webp',
     },
   ];
-const isMobile = useIsMobile();
+  const isMobile = useIsMobile();
   const [duration, setDuration] = useState(0);
   useEffect(() => {
     if (!isMobile) {
@@ -46,43 +45,43 @@ const isMobile = useIsMobile();
     }
   }, [isMobile]);
   return (
-  <div className='py-10'>
-     <Fade triggerOnce={isMobile} direction="up" duration={duration}>
-     <div className="dark:bg-[#213047] max-w-[100%] mx-auto mt-10 shadow-2xl rounded-2xl flex items-center  justify-center">
-      <Swiper
-        modules={[Autoplay, Pagination, Navigation]}
-        spaceBetween={30}
-        slidesPerView={1}
-        loop={true}
-        pagination={{ clickable: true }}
-        navigation={true}
-        autoplay={{ delay: 4000, disableOnInteraction: false }}
-        className="rounded-xl"
-      >
-        {features.map((feature, index) => (
-          <SwiperSlide key={index}>
-            <div className=" flex flex-col md:flex-row items-center justify-center rounded-xl shadow-xl overflow-hidden">
-              <img
-                src={feature.image}
-                alt={feature.title}
-                className="md:h-[500px] w-full md:w-1/2 object-cover"
-              />
-              <div className="p-8 md:w-1/2 text-center md:text-left">
-                <h2 className="text-3xl font-bold mb-2 text-primary">
-                  {feature.title}
-                </h2>
-                <p className=" mb-4">{feature.desc}</p>
-                <span className="text-[#658af1] inline-block bg-primary dark:bg-accent  px-4 py-2 rounded-full font-semibold text-sm">
-                  🚀 {feature.highlight}
-                </span>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <div className="py-10">
+      <Fade triggerOnce={isMobile} direction="up" duration={duration}>
+        <div className="bg-[#F6F0F0] dark:bg-[#213047] max-w-[100%] mx-auto mt-10 shadow-2xl rounded-2xl flex items-center  justify-center">
+          <Swiper
+            modules={[Autoplay, Pagination, Navigation]}
+            spaceBetween={30}
+            slidesPerView={1}
+            loop={true}
+            pagination={{ clickable: true }}
+            navigation={true}
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
+            className="rounded-xl"
+          >
+            {features.map((feature, index) => (
+              <SwiperSlide key={index}>
+                <div className=" flex flex-col md:flex-row items-center justify-center rounded-xl shadow-xl overflow-hidden">
+                  <img
+                    src={feature.image}
+                    alt={feature.title}
+                    className="md:h-[500px] w-full md:w-1/2 object-cover"
+                  />
+                  <div className="p-8 md:w-1/2 text-center md:text-left">
+                    <h2 className="text-3xl font-bold mb-2 text-primary dark:text-accent">
+                      {feature.title}
+                    </h2>
+                    <p className=" mb-4">{feature.desc}</p>
+                    <span className="text-[#658af1] inline-block bg-primary dark:bg-accent  px-4 py-2 rounded-full font-semibold text-sm">
+                      🚀 {feature.highlight}
+                    </span>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </Fade>
     </div>
-   </Fade>
-  </div>
   );
 };
 

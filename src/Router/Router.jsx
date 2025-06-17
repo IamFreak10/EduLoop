@@ -12,6 +12,7 @@ import AssignmentDetails from '../Pages/Assignments/AssignmentDetails';
 import UpdateAssignment from '../Pages/Assignments/UpdateAssignment';
 import SubmitAssignment from '../Pages/Assignments/SubmitAssignment';
 import GiveMark from '../Pages/Marking/GiveMark';
+import AssignmentLayout from '../Layouts/AssignmentLayout';
 
 const router = createBrowserRouter([
   {
@@ -24,8 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'assigments',
-        Component: Assignments,
-        loader: () => fetch('http://localhost:3000/assignments'),
+        Component: AssignmentLayout,
       },
       {
         path: 'CreateAssignment',
@@ -76,20 +76,19 @@ const router = createBrowserRouter([
         path: 'assignmentsubmisson/:id',
         element: (
           <PrivateRoute>
-          <SubmitAssignment></SubmitAssignment>
+            <SubmitAssignment></SubmitAssignment>
           </PrivateRoute>
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:3000/assignments/${params.id}`),
-      },{
-        path:'give-mark/:id',
+      },
+      {
+        path: 'give-mark/:id',
         element: (
           <PrivateRoute>
-         <GiveMark></GiveMark>
+            <GiveMark></GiveMark>
           </PrivateRoute>
         ),
-       
-
       },
 
       {

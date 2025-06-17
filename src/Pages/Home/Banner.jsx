@@ -25,7 +25,7 @@ const Banner = () => {
     return () => window.removeEventListener('resize', updateAnimation);
   }, []);
   return (
-    <div className="hero  dark:bg-[#213047] md:min-h-screen shadow-2xl rounded-2xl">
+    <div className="hero bg-[#F6F0F0] dark:bg-[#213047] md:min-h-screen shadow-2xl rounded-2xl">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="flex-1">
           <motion.img

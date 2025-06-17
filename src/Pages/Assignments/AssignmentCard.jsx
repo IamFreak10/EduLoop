@@ -4,8 +4,10 @@ import Swal from 'sweetalert2';
 import { FaEye, FaEdit, FaTrash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router'; // FIX: use 'react-router-dom'
 import UseAuth from '../../Hooks/UseAuth';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const AssignmentCard = ({ assignment }) => {
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const {
     title,
@@ -23,7 +25,7 @@ const AssignmentCard = ({ assignment }) => {
     if (!user) {
       Swal.fire({
         title: 'Error!',
-        text: 'You are not evenet logged in,only logged in Users Can process such actions.Login To Conitue',
+        text: 'You are not even logged in,only logged in Users Can process such actions.Login To Conitue',
         icon: 'error',
         confirmButtonText: 'OK',
       }).then(() => {
@@ -41,8 +43,8 @@ const AssignmentCard = ({ assignment }) => {
       }).then((result) => {
         if (result.isConfirmed) {
           if (user.email === CreatorInfo.email) {
-            axios
-              .delete(`http://localhost:3000/assignments/${id}`)
+            axiosSecure
+              .delete(`http://localhost:3000/assignments/${id}?email=${user.email}`)
               .then(() => {
                 Swal.fire(
                   'Deleted!',
@@ -70,7 +72,7 @@ const AssignmentCard = ({ assignment }) => {
   };
 
   return (
-    <div className="flex flex-col h-full justify-between bg-white min-h-[450px] dark:bg-[#213047] shadow-2xl max-w-sm w-full mx-auto rounded-lg overflow-hidden hover:shadow hover:scale-110 transition-all duration-1000">
+    <div className="flex flex-col h-full justify-between bg-[#FFF0BD] min-h-[450px] dark:bg-[#213047] shadow-2xl max-w-sm w-full mx-auto rounded-lg overflow-hidden hover:shadow hover:scale-110 transition-all duration-1000">
       <figure className="px-4 pt-4">
         <img
           src={thumbnail}

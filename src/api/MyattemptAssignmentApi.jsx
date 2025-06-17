@@ -5,8 +5,7 @@ const MyattemptAssignmentApi = () => {
   const axiosSecure = useAxiosSecure();
   const myAttemptAssignmenPromise = (email) => {
     return axiosSecure
-      // .get(`/submissions?email=${email}`)
-      .get('/submissions?email=mahfuj.cse10.bu@gmail.com')
+      .get(`/myattemptassignments?email=${email}`)
       .then((res) => res.data);
   };
   return { myAttemptAssignmenPromise };

@@ -17,7 +17,9 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/"
-          className={({ isActive }) => (isActive ? 'text-primary' : '')}
+          className={({ isActive }) =>
+            isActive ? 'text-amber-600 dark:text-accent' : ''
+          }
         >
           Home
         </NavLink>
@@ -25,7 +27,9 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/assigments"
-          className={({ isActive }) => (isActive ? 'text-primary' : '')}
+          className={({ isActive }) =>
+            isActive ? 'text-amber-600 dark:text-accent' : ''
+          }
         >
           Assignments
         </NavLink>
@@ -35,7 +39,9 @@ const Navbar = () => {
         <li>
           <NavLink
             to="/PendingAssignments"
-            className={({ isActive }) => (isActive ? 'text-primary' : '')}
+            className={({ isActive }) =>
+              isActive ? 'text-amber-600 dark:text-accent' : ''
+            }
           >
             Pending Assignments
           </NavLink>
@@ -45,7 +51,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar  dark:bg-[#1e293b] shadow-sm px-4">
+    <div className="sticky top-0 z-10 navbar rounded-b-sm bg-[#F6F0F0]  dark:bg-[#1e293b] shadow-sm px-4">
       <div className="navbar-start">
         <div className="dropdown">
           <button tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -89,13 +95,19 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
+        <ul className="menu menu-horizontal px-1 text-[15px]">{links}</ul>
       </div>
 
       <div className="navbar-end space-x-2">
         {user ? (
-          <div className="tooltip tooltip-left dropdown dropdown-end " data-tip={user.displayName}>
-            <button tabIndex={0} className="btn btn-ghost btn-circle avatar mr-2">
+          <div
+            className="tooltip tooltip-left dropdown dropdown-end "
+            data-tip={user.displayName}
+          >
+            <button
+              tabIndex={0}
+              className="btn btn-ghost btn-circle avatar mr-2"
+            >
               <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
                 {/* If user has a photoURL, use that */}
                 {user.photoURL ? (
@@ -131,11 +143,11 @@ const Navbar = () => {
           </div>
         ) : (
           <>
-            <NavLink className=" btn btn-sm btn-outline" to="/register">
+            <NavLink className=" btn  px-4 py-2 btn-warning dark:btn-accent btn-outline" to="/register">
               Register
             </NavLink>
             <NavLink
-              className="btn btn-sm btn-primary dark:btn-accent"
+              className="btn px-4 py-2 btn-warning  dark:btn-accent"
               to="/signIn"
             >
               Sign In

@@ -7,15 +7,15 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import { Fade } from 'react-awesome-reveal';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 const SignIn = () => {
-  const[showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const { signInUser, setLoading } = use(Authcontext);
   const location = useLocation();
   const from = location.state || '/';
   const navigate = useNavigate();
-   const handleShowPassword = () => {
+  const handleShowPassword = () => {
     setShowPassword(!showPassword);
-  }
+  };
   const handleSignIn = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -45,7 +45,7 @@ const SignIn = () => {
               loop={true}
             ></Lottie>
           </div>
-          <div className="card dark:bg-[#213047] w-full max-w-sm   shrink-0 shadow-2xl">
+          <div className="card bg-[#8DBCC770] dark:bg-[#213047] w-full max-w-sm   shrink-0 shadow-2xl">
             <div className="card-body">
               <form onSubmit={handleSignIn}>
                 <fieldset className="fieldset">

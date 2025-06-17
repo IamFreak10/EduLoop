@@ -1,32 +1,37 @@
-import { useEffect, useState } from "react";
-import DarkModeBtn from "./DarkModeBtn";
-import { ThemeProvider } from "./theme";
+import { useContext, useEffect, useState } from 'react';
+import DarkModeBtn from './DarkModeBtn';
+import { ThemeProvider } from './theme';
+
+import { Authcontext } from '../../../Context/Authcontext';
+
 function DarkMode() {
+  const { ModeInterceptor } = useContext(Authcontext);
   const [darkMode, setDarkMode] = useState(() => {
-    const isDark = localStorage.getItem("darkMode");
-    return isDark === "true";
+    const isDark = localStorage.getItem('darkMode');
+    return isDark === 'true';
   });
 
   const toggleDarkMode = () => {
     setDarkMode((prev) => !prev);
+    ModeInterceptor();
   };
 
   useEffect(() => {
-    localStorage.setItem("darkMode", darkMode.toString());
+    localStorage.setItem('darkMode', darkMode.toString());
 
     const bodyEl = document.body;
     if (bodyEl) {
       if (darkMode) {
-        bodyEl.classList.add("dark");
+        bodyEl.classList.add('dark');
       } else {
-        bodyEl.classList.remove("dark");
+        bodyEl.classList.remove('dark');
       }
     }
   }, [darkMode]);
 
   return (
     <ThemeProvider value={{ darkMode, toggleDarkMode }}>
-      <div className="opacity-20 hover:opacity-100 z-30  fixed  left-2" >
+      <div className="opacity-20 hover:opacity-100 z-30  fixed top-20 right-2">
         <DarkModeBtn />
       </div>
     </ThemeProvider>

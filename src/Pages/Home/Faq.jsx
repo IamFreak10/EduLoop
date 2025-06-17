@@ -42,13 +42,12 @@ const Faq = () => {
   }, [isMobile]);
   console.log(duration);
   return (
-    <div className=''>
+    <div className="">
       <h2 className="text-3xl mb-4 font-bold text-center">
         Frequently Asked Questions
-      </h2>
-      {' '}
+      </h2>{' '}
       <Fade triggerOnce={isMobile} direction="up" duration={duration}>
-        <div className=" dark:bg-[#213047] max-w-[100%] mx-auto flex flex-col md:flex-row-reverse items-center  rounded-2xl shadow-2xl">
+        <div className="bg-[#F6F0F0] dark:bg-[#213047] max-w-[100%] mx-auto flex flex-col md:flex-row-reverse items-center  rounded-2xl shadow-2xl">
           <div className="flex-1">
             <Lottie
               style={{ width: '300px', height: '300px' }}
