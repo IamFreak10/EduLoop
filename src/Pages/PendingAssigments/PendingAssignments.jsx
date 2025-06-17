@@ -24,6 +24,9 @@ const PendingAssignments = () => {
         <h1 className="text-5xl font-bold text-center mb-9">
          No Pending Assignment!!
         </h1>
+          <span className="text-sm text-amber-600 mb-5">
+          NB:Wait A few Seconds..!!If You Dont Get Data Loaded.If You Still Don't....
+        </span>
         <NavLink
           to='/assigments'
           className="px-6 py-3 rounded-md bg-warning text-white font-semibold hover:bg-primary/90 transition duration-300"
