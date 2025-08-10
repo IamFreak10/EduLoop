@@ -41,8 +41,19 @@ const Navbar = () => {
           Assignments
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/about-us"
+          className={({ isActive }) =>
+            isActive ? 'text-amber-600 dark:text-accent' : ''
+          }
+        >
+          About Us
+        </NavLink>
+      </li>
 
       {user && (
+        <>
         <li>
           <NavLink
             to="/PendingAssignments"
@@ -53,12 +64,23 @@ const Navbar = () => {
             Pending Assignments
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/MyAttemptAssignments"
+            className={({ isActive }) =>
+              isActive ? 'text-amber-600 dark:text-accent' : ''
+            }
+          >
+            My Attempt Assignments
+          </NavLink>
+        </li>
+        </>
       )}
     </>
   );
 
   return (
-    <div className="sticky top-0 z-10 navbar rounded-b-sm bg-[#FADA7A]  dark:bg-[#1e293b] shadow-sm px-4">
+    <div className="sticky top-0 z-10 flex items-center h-[64px] px-0 lg:px-[6%]  rounded-b-sm bg-[#FADA7A]  dark:bg-[#1e293b] shadow-sm ">
       <div className="navbar-start">
         <div className="dropdown">
           <button tabIndex={0} className="btn btn-ghost lg:hidden">

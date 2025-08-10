@@ -14,6 +14,7 @@ import SubmitAssignment from '../Pages/Assignments/SubmitAssignment';
 import GiveMark from '../Pages/Marking/GiveMark';
 import AssignmentLayout from '../Layouts/AssignmentLayout';
 import Error from '../Pages/Shared/Error';
+import About from '../Pages/Shared/ABout';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,11 @@ const router = createBrowserRouter([
       {
         path: 'assigments',
         Component: AssignmentLayout,
+      },
+      {
+        path:'about-us'
+        ,
+        Component:About
       },
       {
         path: 'CreateAssignment',
