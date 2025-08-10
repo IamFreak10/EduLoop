@@ -5,6 +5,7 @@ import { Authcontext } from '../../Context/Authcontext';
 import Faq from './Faq';
 import Swal from 'sweetalert2';
 import FeatureSwiper from './FeatureSwiper';
+import StatsCounter from './StatsCounter';
 
 
 
@@ -17,6 +18,7 @@ const Home = () => {
       <Banner></Banner>
      <FeatureSwiper></FeatureSwiper>
       <Faq></Faq>
+      <StatsCounter></StatsCounter>
       
     </div>
   );
